@@ -49,6 +49,10 @@ app.get('/tweet/:tweet_id/comments/:cmt_id', (req, res) => {
   });
 })
 
+app.use((req, res) => {
+  res.status(404).json({ message: "Not Found" });
+});
+
 // Define a port & attach it on express
 app.listen(3000, () => {
   console.log("Server is running on 3000");
