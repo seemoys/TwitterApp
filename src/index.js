@@ -1,8 +1,23 @@
 import express from "express";
 import morgan from "morgan";
+import path from 'path';
+import { fileURLToPath } from "url";
 
 // Create a express app server object.
 const app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
+app.set("views", path.join(__dirname, "view"));
+app.set('view engine', 'ejs');
+
+
+app.get('/home', function(req, res) {
+  res.render('index',{name:"Seemoy Shome"});
+});
+
 app.use(morgan('combined'));
 
 function mid1(req, res, next) {
